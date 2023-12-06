@@ -9,6 +9,8 @@ public class FireflyBehaviour : MonoBehaviour
 
     protected Vector3 direction;
 
+    public float speed = 1.0f;
+
     public FireflyType Type { get; protected set; } = FireflyType.Common;
 
     private Dictionary<FireflyType, int> typeDistribution = new Dictionary<FireflyType, int>
@@ -76,9 +78,15 @@ public class FireflyBehaviour : MonoBehaviour
         renderer.material.SetColor("_EmissionColor", typeColors[Type]);
     }
 
+    private void Update()
+    {
+        speed = Mathf.Pow(Time.timeSinceLevelLoad, 0.05f);
+        Debug.Log(speed);
+    }
+
     protected virtual void FixedUpdate()
     {
-        GetComponent<Rigidbody>().AddForce(direction * 0.0000005f);
+        GetComponent<Rigidbody>().AddForce(direction * 0.0000005f * speed);
         PutBackOntoSphere();
 
         Debug.Log(GetComponent<Rigidbody>().velocity);

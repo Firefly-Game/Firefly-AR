@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   scoreLabel: {fileID: 0}
+  JarOpeningAudioSource: {fileID: 0}
+  speed: 1
 --- !u!54 &4731207795963774402
 Rigidbody:
   m_ObjectHideFlags: 0

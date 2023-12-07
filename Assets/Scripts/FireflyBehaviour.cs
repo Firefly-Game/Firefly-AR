@@ -6,6 +6,7 @@ public class FireflyBehaviour : MonoBehaviour
 {
     public GameObject target;
     public ScoreLabel scoreLabel;
+    public AudioSource JarOpeningAudioSource;
 
     protected Vector3 direction;
 
@@ -44,6 +45,11 @@ public class FireflyBehaviour : MonoBehaviour
     {
         target = FindAnyObjectByType<Camera>().gameObject;
         scoreLabel = FindAnyObjectByType<ScoreLabel>();
+        GameObject openingObject = GameObject.FindGameObjectWithTag("opening"); 
+        if (openingObject != null)
+        {
+            JarOpeningAudioSource = openingObject.GetComponent<AudioSource>();
+        }
         SetType();
         SetColor();
         StartCoroutine(ChangeDirection());
@@ -117,10 +123,19 @@ public class FireflyBehaviour : MonoBehaviour
         {
             gameObject.SetActive(false);
             scoreLabel.OnCatch(this);
+            PlayOpeningSound();
         }
         else if (other.gameObject.CompareTag("jar"))
         {
             HandleCollisionWithJar(other);
+        }
+    }
+
+    private void PlayOpeningSound()
+    {
+        if (JarOpeningAudioSource != null)
+        {
+            JarOpeningAudioSource.Play();
         }
     }
 

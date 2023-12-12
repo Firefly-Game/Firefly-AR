@@ -56,6 +56,8 @@ public class Glow : MonoBehaviour
             isGlowing = true;
             Debug.Log("Light should have been turned on");
         } 
+
+
     }
 
     private void turnOffGlow()

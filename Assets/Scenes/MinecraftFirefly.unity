@@ -137,10 +137,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireflyAR
       objectReference: {fileID: 0}
+    - target: {fileID: 1127307383354138398, guid: e3eab16297d08a04ca24be64ce70ab0a,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 2038371641}
     - target: {fileID: 3315538121808788257, guid: e3eab16297d08a04ca24be64ce70ab0a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3315538121808788257, guid: e3eab16297d08a04ca24be64ce70ab0a,
         type: 3}
@@ -150,7 +155,7 @@ PrefabInstance:
     - target: {fileID: 3315538121808788257, guid: e3eab16297d08a04ca24be64ce70ab0a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.18
+      value: 10.65
       objectReference: {fileID: 0}
     - target: {fileID: 3315538121808788257, guid: e3eab16297d08a04ca24be64ce70ab0a,
         type: 3}

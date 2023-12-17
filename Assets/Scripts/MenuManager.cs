@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -36,9 +37,8 @@ public class MenuManager : MonoBehaviour
         // Additional code for resuming the game
     }
 
-    public void QuitGame()
+    public void BackToMenu()
     {
-        Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // Uncomment if testing in the Unity Editor
+        SceneManager.LoadScene("MainMenu");
     }
 }

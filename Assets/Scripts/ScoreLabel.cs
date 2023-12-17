@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreLabel : MonoBehaviour
@@ -28,7 +30,7 @@ public class ScoreLabel : MonoBehaviour
         // If we caught moth, end game
         if(firefly.tag.Equals("moth"))
         {
-            EndGame();
+            StartCoroutine(GameOverSequence());
         }
 
         Debug.Log(firefly.tag);
@@ -36,6 +38,30 @@ public class ScoreLabel : MonoBehaviour
         score += typeValues[firefly.Type];
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        
+    }
+
+    private IEnumerator GameOverSequence()
+    {
+        PauseGame();
+
+        // Play losing sound 
+
+        yield return new WaitForSecondsRealtime(2);
+
+        ResumeGame();
+
+        SceneManager.LoadScene("MainMenu"); 
+
+    }
     private void EndGame()
     {
         UnityEditor.EditorApplication.isPlaying = false;

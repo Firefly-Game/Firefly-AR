@@ -10,6 +10,8 @@ public class ARFireflyMovement : MonoBehaviour
     private float speed = 1.04f;
     public GameObject target;
     private Vector3 height = new Vector3(0.0f,2.0f,0.0f); // How high above target object the firefly should be
+    private Vector3 vertStep = new Vector3(0.0f,0.5f,0.0f); // If firefly is far above or under target, take steps vertically
+
 
 
     void Start()
@@ -22,11 +24,25 @@ public class ARFireflyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        MoveTowardsGoal();
+        RotateTowardsGoal();
+        float vertDist = target.transform.position.y - transform.position.y;
+
+        // If more than two steps above or under target, move vertically
+        if(vertDist > (2.0 * vertStep.y))
+        {
+            MoveUp();
+        }
+
+        if(vertDist < (-2.0 * vertStep.y))
+        {
+            MoveDown();
+        }
+
         
     }
 
-    private void Move()
+    private void MoveTowardsGoal()
     {
         // Movement
         Vector3 direction = ((target.transform.position + height) - transform.position).normalized;
@@ -41,6 +57,16 @@ public class ARFireflyMovement : MonoBehaviour
 
     }
 
+    private void RotateTowardsGoal()
+    {
+
+        // Get the direction from the current position to the target
+        // Vector3 direction = ((target.transform.position + height) - transform.position).normalized;
+        // transform.forward = direction;
+
+        transform.LookAt(target.transform.position + height);
+    }
+
 
     /*private void MoveTowardsTarget()
     {
@@ -49,6 +75,15 @@ public class ARFireflyMovement : MonoBehaviour
         transform.position = Vector3.Lerp(initPos, targetPos, fractionOfJourney);
     }*/
 
+    private void MoveUp()
+    {
+        transform.position += vertStep;
+    }
+
+    private void MoveDown()
+    {
+        transform.position -= vertStep;
+    }
 
 
 }

@@ -9,10 +9,10 @@ public class ARFireflyMovement : MonoBehaviour
     private float frequency = 4.84f;
     private float speed = 1.04f;
     public GameObject target;
-    private Vector3 height = new Vector3(0.0f,2.0f,0.0f); // How high above target object the firefly should be
+    private Vector3 height = new Vector3(0.0f,3.0f,0.0f); // How high above target object the firefly should be
     private Vector3 vertStep = new Vector3(0.0f,0.5f,0.0f); // If firefly is far above or under target, take steps vertically
-
-
+    private bool hasReachedGoal = false; // When reached goal, should not move away any more
+    private float startTime;
 
     void Start()
     {
@@ -24,21 +24,42 @@ public class ARFireflyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsGoal();
-        RotateTowardsGoal();
-        float vertDist = target.transform.position.y - transform.position.y;
+        float dist = ((target.transform.position + height) - transform.position).magnitude;
 
-        // If more than two steps above or under target, move vertically
-        if(vertDist > (2.0 * vertStep.y))
+        
+        if (!hasReachedGoal)
         {
-            MoveUp();
-        }
+            // If close, has reached goal and should not move any more
+            if (dist < 0.2)
+            {
+                Debug.Log("Has reached goal");
+                hasReachedGoal = true;
+            }
+            // Else should move
+            else
+            {
+                MoveTowardsGoal();
+                RotateTowardsGoal();
+                float vertDist = target.transform.position.y - transform.position.y;
 
-        if(vertDist < (-2.0 * vertStep.y))
+
+                // If above or under target, move vertically
+                if (transform.position.y < ((target.transform.position + height).y))
+                {
+                    MoveUp();
+                }
+
+                if (vertDist > ((target.transform.position + height).y))
+                {
+                    MoveDown();
+                }
+            }
+        }
+        else
         {
-            MoveDown();
+            // Simply move up and down 
+            MoveUpAndDown();
         }
-
         
     }
 
@@ -49,22 +70,34 @@ public class ARFireflyMovement : MonoBehaviour
 
     }
 
+    private void MoveUpAndDown()
+    {
+        transform.position += new Vector3(0, Mathf.Sin(Time.time * frequency) * amplitude, 0) * Time.deltaTime * speed;
+    }
+
+    // Rotate but keep the rotation in the y-direction
     private void RotateTowardsGoal()
     {
-
-        transform.LookAt(target.transform.position + height);
+        Vector3 goal = target.transform.position + height;
+        transform.LookAt(new Vector3(goal.x, transform.position.y, goal.z));
     }
 
 
     private void MoveUp()
     {
-        transform.position += vertStep;
+        Vector3 goal = transform.position += vertStep;
+        float distCovered = (Time.time - startTime) * speed;
+        float fractionOfJourney = distCovered / vertStep.magnitude;
+        transform.position = Vector3.Lerp(transform.position-(new Vector3(0.0f,distCovered, 0.0f)), goal, fractionOfJourney);
+        Debug.Log("Dist covered: " + distCovered);
     }
 
     private void MoveDown()
     {
         transform.position -= vertStep;
     }
+
+   
 
 
 }

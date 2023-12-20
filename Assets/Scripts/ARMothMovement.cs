@@ -8,9 +8,9 @@ public class ARMothMovement : MonoBehaviour
     private float frequency = 4.84f;
     private float speed = 1.04f;
     public GameObject target;
-    private Vector3 distanceBehind = new Vector3(1.0f, 2.0f, -2.0f); // The distance between target and point behind
+    private Vector3 height = new Vector3(0.0f, 3.0f, 0.0f); // The distance between target and point behind
     private Vector3 vertStep = new Vector3(0.0f, 0.5f, 0.0f); // If firefly is far above or under target, take steps vertically
-
+    private bool hasReachedGoal;
 
 
     void Start()
@@ -23,35 +23,63 @@ public class ARMothMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsGoal();
-        RotateTowardsGoal();
-        float vertDist = target.transform.position.y - transform.position.y;
+        float dist = ((target.transform.position + height) - transform.position).magnitude;
 
-        // If more than two steps above or under target, move vertically
-        /*if (vertDist > (2.0 * vertStep.y))
+
+        if (!hasReachedGoal)
         {
-            MoveUp();
+            // If close, has reached goal and should not move any more
+            if (dist < 0.2)
+            {
+                Debug.Log("Has reached goal");
+                hasReachedGoal = true;
+            }
+            // Else should move
+            else
+            {
+                MoveTowardsGoal();
+                RotateTowardsGoal();
+                float vertDist = target.transform.position.y - transform.position.y;
+
+
+                // If above or under target, move vertically
+                if (transform.position.y < ((target.transform.position + height).y))
+                {
+                    MoveUp();
+                }
+
+                if (vertDist > ((target.transform.position + height).y))
+                {
+                    MoveDown();
+                }
+            }
         }
-
-        if (vertDist < (-2.0 * vertStep.y))
+        else
         {
-            MoveDown();
-        }*/
+            // Simply move up and down
+            MoveUpAndDown();
+        }
 
 
     }
 
     private void MoveTowardsGoal()
     {
-        Vector3 direction = ((target.transform.position + distanceBehind) - transform.position).normalized;
+        Vector3 direction = ((target.transform.position + height) - transform.position).normalized;
         transform.position += new Vector3(direction.x, Mathf.Sin(Time.time * frequency) * amplitude, direction.z) * Time.deltaTime * speed;
 
     }
 
+    // Rotate but keep the rotation in the y-direction
     private void RotateTowardsGoal()
     {
+        Vector3 goal = target.transform.position + height;
+        transform.LookAt(new Vector3(goal.x, transform.position.y, goal.z));
+    }
 
-        transform.LookAt(target.transform.position + distanceBehind);
+    private void MoveUpAndDown()
+    {
+        transform.position += new Vector3(0, Mathf.Sin(Time.time * frequency) * amplitude, 0) * Time.deltaTime * speed;
     }
 
 

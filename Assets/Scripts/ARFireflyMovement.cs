@@ -85,11 +85,7 @@ public class ARFireflyMovement : MonoBehaviour
 
     private void MoveUp()
     {
-        Vector3 goal = transform.position += vertStep;
-        float distCovered = (Time.time - startTime) * speed;
-        float fractionOfJourney = distCovered / vertStep.magnitude;
-        transform.position = Vector3.Lerp(transform.position-(new Vector3(0.0f,distCovered, 0.0f)), goal, fractionOfJourney);
-        Debug.Log("Dist covered: " + distCovered);
+        transform.position += vertStep;
     }
 
     private void MoveDown()

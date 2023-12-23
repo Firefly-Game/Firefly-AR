@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class FireflyBehaviour : MonoBehaviour
@@ -11,6 +12,8 @@ public class FireflyBehaviour : MonoBehaviour
     protected Vector3 direction;
 
     public float speed = 1.0f;
+    private bool collected = false;
+    private Vector3 desiredScale = Vector3.one * 0.1f;
 
     public FireflyType Type { get; protected set; } = FireflyType.Common;
 
@@ -84,23 +87,24 @@ public class FireflyBehaviour : MonoBehaviour
         renderer.material.SetColor("_EmissionColor", typeColors[Type]);
     }
 
-    private void Update()
-    {
-        speed = Mathf.Pow(Time.timeSinceLevelLoad, 0.05f);
-        Debug.Log(speed);
-    }
-
     protected virtual void FixedUpdate()
     {
-        GetComponent<Rigidbody>().AddForce(direction * 0.0000005f * speed);
-        PutBackOntoSphere();
-
-        Debug.Log(GetComponent<Rigidbody>().velocity);
+        if (!collected)
+        {
+            speed = Mathf.Pow(Time.timeSinceLevelLoad, 0.05f);
+            GetComponent<Rigidbody>().AddForce(direction * 0.0000005f * speed);
+            PutBackOntoSphere();
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, transform.parent.position, 0.1f);
+            transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, 0.1f);
+        }
     }
 
     protected virtual IEnumerator ChangeDirection()
     {
-        while (true)
+        while (!collected)
         {
             Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
             direction = Vector3.Cross(transform.position, randomDirection).normalized;
@@ -119,15 +123,11 @@ public class FireflyBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+        if (collected) return; 
+
         if (other.gameObject.CompareTag("opening"))
         {
-            gameObject.SetActive(false);
-            scoreLabel.OnCatch(this);
-            PlayOpeningSound();
-        }
-        else if (other.gameObject.CompareTag("jar"))
-        {
-            HandleCollisionWithJar(other);
+            HandleCollisionWithOpening(other);
         }
     }
 
@@ -139,23 +139,21 @@ public class FireflyBehaviour : MonoBehaviour
         }
     }
 
-    protected virtual void OnTriggerStay(Collider other)
+    protected virtual void HandleCollisionWithOpening(Collider other)
     {
-        if (other.gameObject.CompareTag("jar"))
-        {
-            HandleCollisionWithJar(other);
-        }
-    }
+        collected = true;
+        gameObject.layer = LayerMask.NameToLayer("Collected");
+        transform.parent = GameObject.Find("Jar").transform;
 
-    // Push the firefly away from the jar
-    protected virtual void HandleCollisionWithJar(Collider other)
-    {
-        Vector3 fromOther = transform.position - other.transform.position;
+        Vector3 parentScale = GameObject.Find("Jar").transform.localScale;
+        desiredScale = new Vector3(
+            1f / parentScale.x * transform.localScale.x,
+            1f / parentScale.y * transform.localScale.y,
+            1f / parentScale.z * transform.localScale.z
+            ) * 0.5f;
 
-        float ratio = other.transform.localScale.z / (fromOther.magnitude != 0 ? fromOther.magnitude : 0.00001f);
-        ratio = Mathf.Pow(ratio, 3);
-
-        Vector3 force = (fromOther * 0.000005f * ratio);
-        GetComponent<Rigidbody>().AddForce(force);
+        //gameObject.SetActive(false);
+        scoreLabel.OnCatch(this);
+        PlayOpeningSound();
     }
 }

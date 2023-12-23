@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ARFireflyMovement : MonoBehaviour
@@ -13,52 +10,38 @@ public class ARFireflyMovement : MonoBehaviour
     private Vector3 vertStep = new Vector3(0.0f,0.5f,0.0f); // If firefly is far above or under target, take steps vertically
     private float radiusSphere = 3.0f;
 
-    void Start()
-    {
-        
-       
-    }
-
-
     // Update is called once per frame
     void Update()
     {
-        float dist = ((target.transform.position) - transform.position).magnitude;
+        float dist = (target.transform.position - transform.position).magnitude;
 
-        
         if (dist > radiusSphere)
         {
-            
-                MoveTowardsGoal();
-                RotateTowardsGoal();
-                float vertDist = target.transform.position.y - transform.position.y;
+            MoveTowardsGoal();
+            RotateTowardsGoal();
 
+            // If above or under target, move vertically
+            if (transform.position.y < target.transform.position.y)
+            {
+                MoveUp();
+            }
 
-                // If above or under target, move vertically
-                if (transform.position.y < ((target.transform.position).y))
-                {
-                    MoveUp();
-                }
-
-                if (transform.position.y > ((target.transform.position).y))
-                {
-                    MoveDown();
-                }
-            
+            if (transform.position.y > target.transform.position.y)
+            {
+                MoveDown();
+            }
         }
         else
         {
             // Simply move up and down 
             MoveUpAndDown();
         }
-        
     }
 
     private void MoveTowardsGoal()
     {
-        Vector3 direction = ((target.transform.position) - transform.position).normalized;
+        Vector3 direction = (target.transform.position - transform.position).normalized;
         transform.position += new Vector3(direction.x, Mathf.Sin(Time.time * frequency) * amplitude, direction.z) * Time.deltaTime * speed;
-
     }
 
     private void MoveUpAndDown()
@@ -73,7 +56,6 @@ public class ARFireflyMovement : MonoBehaviour
         transform.LookAt(new Vector3(goal.x, transform.position.y, goal.z));
     }
 
-
     private void MoveUp()
     {
         transform.position += vertStep;
@@ -83,8 +65,4 @@ public class ARFireflyMovement : MonoBehaviour
     {
         transform.position -= vertStep;
     }
-
-   
-
-
 }

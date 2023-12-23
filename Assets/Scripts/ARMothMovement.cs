@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ARMothMovement : MonoBehaviour
@@ -12,19 +10,10 @@ public class ARMothMovement : MonoBehaviour
     private Vector3 vertStep = new Vector3(0.0f, 0.5f, 0.0f); // If firefly is far above or under target, take steps vertically
     private bool hasReachedGoal;
 
-
-    void Start()
-    {
-
-
-    }
-
-
     // Update is called once per frame
     void Update()
     {
-        float dist = ((target.transform.position + height) - transform.position).magnitude;
-
+        float dist = (target.transform.position + height - transform.position).magnitude;
 
         if (!hasReachedGoal)
         {
@@ -41,14 +30,13 @@ public class ARMothMovement : MonoBehaviour
                 RotateTowardsGoal();
                 float vertDist = target.transform.position.y - transform.position.y;
 
-
                 // If above or under target, move vertically
-                if (transform.position.y < ((target.transform.position + height).y))
+                if (transform.position.y < (target.transform.position + height).y)
                 {
                     MoveUp();
                 }
 
-                if (vertDist > ((target.transform.position + height).y))
+                if (vertDist > (target.transform.position + height).y)
                 {
                     MoveDown();
                 }
@@ -59,15 +47,12 @@ public class ARMothMovement : MonoBehaviour
             // Simply move up and down
             MoveUpAndDown();
         }
-
-
     }
 
     private void MoveTowardsGoal()
     {
-        Vector3 direction = ((target.transform.position + height) - transform.position).normalized;
+        Vector3 direction = (target.transform.position + height - transform.position).normalized;
         transform.position += new Vector3(direction.x, Mathf.Sin(Time.time * frequency) * amplitude, direction.z) * Time.deltaTime * speed;
-
     }
 
     // Rotate but keep the rotation in the y-direction
@@ -81,7 +66,6 @@ public class ARMothMovement : MonoBehaviour
     {
         transform.position += new Vector3(0, Mathf.Sin(Time.time * frequency) * amplitude, 0) * Time.deltaTime * speed;
     }
-
 
     private void MoveUp()
     {

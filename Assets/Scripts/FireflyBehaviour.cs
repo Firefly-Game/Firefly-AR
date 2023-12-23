@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class FireflyBehaviour : MonoBehaviour
 {
     public GameObject target;
     public ScoreLabel scoreLabel;
-    public AudioSource JarOpeningAudioSource;
+    public AudioSource jarOpeningAudioSource;
 
     protected Vector3 direction;
 
@@ -51,7 +50,7 @@ public class FireflyBehaviour : MonoBehaviour
         GameObject openingObject = GameObject.FindGameObjectWithTag("opening"); 
         if (openingObject != null)
         {
-            JarOpeningAudioSource = openingObject.GetComponent<AudioSource>();
+            jarOpeningAudioSource = openingObject.GetComponent<AudioSource>();
         }
         SetType();
         SetColor();
@@ -133,9 +132,9 @@ public class FireflyBehaviour : MonoBehaviour
 
     private void PlayOpeningSound()
     {
-        if (JarOpeningAudioSource != null)
+        if (jarOpeningAudioSource != null)
         {
-            JarOpeningAudioSource.Play();
+            jarOpeningAudioSource.Play();
         }
     }
 

@@ -34,14 +34,4 @@ public class Moth : FireflyBehaviour
     {
         base.OnTriggerEnter(other);
     }
-
-    protected override void OnTriggerStay(Collider other)
-    {
-        base.OnTriggerStay(other);
-    }
-
-    protected override void HandleCollisionWithJar(Collider other)
-    {
-        base.HandleCollisionWithJar(other);
-    }
 }

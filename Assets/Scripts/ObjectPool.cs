@@ -40,6 +40,7 @@ public class ObjectPool : MonoBehaviour
         Objects[index].transform.position = position;
         Objects[index].transform.rotation = rotation;
         Objects[index].SetActive(true);
+        Objects[index].layer = LayerMask.NameToLayer("NotCollected");
     }
 
     // Add *amount* number of *objectToPool* to the list of pooled objects

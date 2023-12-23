@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7080704674657618082}
   - component: {fileID: 6266588803942589543}
   - component: {fileID: 4897502058126902184}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Moth
   m_TagString: moth
   m_Icon: {fileID: 0}
@@ -138,6 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   scoreLabel: {fileID: 0}
+  JarOpeningAudioSource: {fileID: 0}
+  speed: 1
 --- !u!54 &4897502058126902184
 Rigidbody:
   m_ObjectHideFlags: 0

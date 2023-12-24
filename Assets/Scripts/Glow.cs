@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 // Starts with pause, then glows for duration and repeats
 public class Glow : MonoBehaviour
@@ -15,8 +11,7 @@ public class Glow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        this.GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION"); ; // Disable glow
+        GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION"); ; // Disable glow
         Debug.Log("Started");
     }
 
@@ -25,7 +20,6 @@ public class Glow : MonoBehaviour
     {
         time += Time.deltaTime;
         //Debug.Log("Time: " + time);
-
 
         if (time > pauseTime) {
             Debug.Log("Time > pausetime");
@@ -40,13 +34,9 @@ public class Glow : MonoBehaviour
                 time = 0;
                 turnOffGlow();
             }
-        }
-            
+        } 
     }
         
-        
-    
-
     private void turnOnGlow() {
         Debug.Log("Inside turn on glow " + isGlowing);
 
@@ -56,8 +46,6 @@ public class Glow : MonoBehaviour
             isGlowing = true;
             Debug.Log("Light should have been turned on");
         } 
-
-
     }
 
     private void turnOffGlow()
@@ -69,6 +57,5 @@ public class Glow : MonoBehaviour
             isGlowing = false;
             Debug.Log("Light should have been turned off");
         }
-        
     }
 }

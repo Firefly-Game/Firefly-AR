@@ -3,18 +3,16 @@ using UnityEngine.XR.ARFoundation;
 
 public class LightEstimation : MonoBehaviour
 {
-    private Light my_light;
+    private Light myLight;
     public ARCameraManager cameraManager;
     ILogger logger = Debug.unityLogger;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        my_light = GetComponent<Light>();
+        myLight = GetComponent<Light>();
 
         // Check availablity
-
     }
 
     void OnEnable()
@@ -22,6 +20,7 @@ public class LightEstimation : MonoBehaviour
         cameraManager.frameReceived += OnChange;
     }
     void OnDisable()
+
     {
         cameraManager.frameReceived -= OnChange;
     }
@@ -30,7 +29,7 @@ public class LightEstimation : MonoBehaviour
     {
         if (args.lightEstimation.averageBrightness.HasValue)
         {
-            my_light.intensity = args.lightEstimation.averageBrightness.Value;
+            myLight.intensity = args.lightEstimation.averageBrightness.Value;
         }
         else
         {
@@ -38,16 +37,15 @@ public class LightEstimation : MonoBehaviour
             if(args.lightEstimation.mainLightColor.HasValue)
             {
                 logger.Log("Manual calculation");
-                my_light.color = args.lightEstimation.mainLightColor.Value;
-                float av_brightness = 0.2126f * my_light.color.r + 0.7152f * my_light.color.g + 0.0722f * my_light.color.b;
-                my_light.intensity = av_brightness;
+                myLight.color = args.lightEstimation.mainLightColor.Value;
+                float av_brightness = 0.2126f * myLight.color.r + 0.7152f * myLight.color.g + 0.0722f * myLight.color.b;
+                myLight.intensity = av_brightness;
             }
-            
         }
 
         if (args.lightEstimation.averageColorTemperature.HasValue)
         {
-            my_light.colorTemperature = args.lightEstimation.averageColorTemperature.Value;
+            myLight.colorTemperature = args.lightEstimation.averageColorTemperature.Value;
         }
         else
         {
@@ -56,7 +54,7 @@ public class LightEstimation : MonoBehaviour
 
         if (args.lightEstimation.mainLightDirection.HasValue)
         {
-            my_light.transform.rotation = Quaternion.LookRotation(args.lightEstimation.mainLightDirection.Value);
+            myLight.transform.rotation = Quaternion.LookRotation(args.lightEstimation.mainLightDirection.Value);
         }
         else
         {
@@ -67,7 +65,6 @@ public class LightEstimation : MonoBehaviour
         {
             RenderSettings.ambientProbe = args.lightEstimation.ambientSphericalHarmonics.Value;
         }
-
         else
         {
             logger.Log("No ambient spherical harmonics value");

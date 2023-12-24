@@ -12,9 +12,6 @@ public class ObjectPool : MonoBehaviour
         Objects = new List<GameObject>();
     }
 
-    void Start()
-    { }
-
     public GameObject InstantiateObject(Vector3 position, Quaternion rotation)
     {
         // Get the first inactive object

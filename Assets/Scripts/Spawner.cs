@@ -53,20 +53,20 @@ public class Spawner : MonoBehaviour
 
     public Vector3 GetPositionOnSphere()
     {
-        float x = 0, y = 0, z = 0;
-        while (x == 0 & y == 0 & z == 0)
+        Vector3 point = Vector3.zero;
+        while (point == Vector3.zero)
         {
-            x = Random.Range(-1f, 1f);
-            y = Random.Range(-1f, 1f);
-            z = Random.Range(-1f, 1f);
+            point = new Vector3(
+                Random.Range(-1f, 1f),
+                Random.Range(-1f, 1f),
+                Random.Range(-1f, 1f)
+            );
         }
 
-        float normalizer = 1 / Mathf.Sqrt(x * x + y * y + z * z);
+        float normalizer = 1 / Mathf.Sqrt(Mathf.Pow(point.x, 2) + Mathf.Pow(point.y, 2) + Mathf.Pow(point.z, 2));
 
-        x *= normalizer;
-        y *= normalizer;
-        z *= normalizer;
+        point *= normalizer;
 
-        return new Vector3(x, y, z) * spawnRadius;
+        return point * spawnRadius;
     }
 }

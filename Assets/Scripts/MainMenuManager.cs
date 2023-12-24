@@ -3,32 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void OpenTutorial()
     {
-        SceneManager.LoadScene("SplashScreen");
+        SceneManager.LoadScene("Tutorial");
     }
+
     public void GameStart()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("ARGame");
     }
+
     public void ExitGame()
     {
-        
         Application.Quit();
         UnityEditor.EditorApplication.isPlaying = false; // Uncomment if testing in the Unity Editor
-
     }
-
-
 }

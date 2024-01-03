@@ -16,17 +16,17 @@ public class MainMenuManager : MonoBehaviour
     }
     public void OpenTutorial()
     {
-        SceneManager.LoadScene("SplashScreen");
+        SceneManager.LoadScene("Tutorial");
     }
     public void GameStart()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("OldGame");
     }
     public void ExitGame()
     {
         
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // Uncomment if testing in the Unity Editor
+        //UnityEditor.EditorApplication.isPlaying = false; // Uncomment if testing in the Unity Editor
 
     }
 

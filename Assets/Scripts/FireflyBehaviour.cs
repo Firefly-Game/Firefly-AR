@@ -8,6 +8,7 @@ public class FireflyBehaviour : MonoBehaviour
     public GameObject target;
     public ScoreLabel scoreLabel;
     public AudioSource JarOpeningAudioSource;
+    public AudioSource mothAudioSource;
 
     protected Vector3 direction;
 
@@ -53,6 +54,7 @@ public class FireflyBehaviour : MonoBehaviour
         {
             JarOpeningAudioSource = openingObject.GetComponent<AudioSource>();
         }
+
         SetType();
         SetColor();
         StartCoroutine(ChangeDirection());
@@ -133,9 +135,20 @@ public class FireflyBehaviour : MonoBehaviour
 
     private void PlayOpeningSound()
     {
-        if (JarOpeningAudioSource != null)
+
+        if (Type == FireflyType.Moth)
         {
-            JarOpeningAudioSource.Play();
+            if (mothAudioSource != null)
+            {
+                mothAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (JarOpeningAudioSource != null)
+            {
+                JarOpeningAudioSource.Play();
+            }
         }
     }
 

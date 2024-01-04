@@ -18,6 +18,6 @@ public class SplashScreenControl : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("OldGame");
     }
 }

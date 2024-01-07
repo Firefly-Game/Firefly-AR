@@ -22,6 +22,10 @@ public class MainMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("OldGame");
     }
+    public void OpenMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void ExitGame()
     {
         

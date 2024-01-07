@@ -138,10 +138,7 @@ public class FireflyBehaviour : MonoBehaviour
 
         if (Type == FireflyType.Moth)
         {
-            if (mothAudioSource != null)
-            {
-                mothAudioSource.Play();
-            }
+            AudioManager.Instance.mothAudioSource.Play();
         }
         else
         {

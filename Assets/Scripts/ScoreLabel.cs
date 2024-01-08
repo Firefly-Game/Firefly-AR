@@ -53,13 +53,11 @@ public class ScoreLabel : MonoBehaviour
     {
         PauseGame();
 
-        // Play losing sound 
-
         yield return new WaitForSecondsRealtime(2);
 
         ResumeGame();
 
-        SceneManager.LoadScene("MainMenu"); 
+        SceneManager.LoadScene("LoseScreen"); 
 
     }
     private void EndGame()

@@ -10,12 +10,17 @@ public class MainMenuManager : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene("ARGame");
+        SceneManager.LoadScene("OldGame");
+    }
+    public void OpenMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ExitGame()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // Uncomment if testing in the Unity Editor
+        //UnityEditor.EditorApplication.isPlaying = false; // Uncomment if testing in the Unity Editor
+
     }
 }

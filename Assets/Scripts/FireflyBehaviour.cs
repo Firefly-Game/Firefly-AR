@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class FireflyBehaviour : MonoBehaviour
 {
     public GameObject target;
     public ScoreLabel scoreLabel;
-    public AudioSource JarOpeningAudioSource;
-
     protected Vector3 direction;
-
     public float speed = 1.0f;
     private bool collected = false;
     private Vector3 desiredScale = Vector3.one * 0.1f;
@@ -48,11 +44,6 @@ public class FireflyBehaviour : MonoBehaviour
     {
         target = FindAnyObjectByType<Camera>().gameObject;
         scoreLabel = FindAnyObjectByType<ScoreLabel>();
-        GameObject openingObject = GameObject.FindGameObjectWithTag("opening"); 
-        if (openingObject != null)
-        {
-            JarOpeningAudioSource = openingObject.GetComponent<AudioSource>();
-        }
         SetType();
         SetColor();
         StartCoroutine(ChangeDirection());
@@ -131,14 +122,6 @@ public class FireflyBehaviour : MonoBehaviour
         }
     }
 
-    private void PlayOpeningSound()
-    {
-        if (JarOpeningAudioSource != null)
-        {
-            JarOpeningAudioSource.Play();
-        }
-    }
-
     protected virtual void HandleCollisionWithOpening(Collider other)
     {
         collected = true;
@@ -154,6 +137,5 @@ public class FireflyBehaviour : MonoBehaviour
 
         //gameObject.SetActive(false);
         scoreLabel.OnCatch(this);
-        PlayOpeningSound();
     }
 }

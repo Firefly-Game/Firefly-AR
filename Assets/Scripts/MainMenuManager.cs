@@ -26,7 +26,7 @@ public class MainMenuManager : MonoBehaviour
     {
         
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // Uncomment if testing in the Unity Editor
+        //UnityEditor.EditorApplication.isPlaying = false; // Uncomment if testing in the Unity Editor
 
     }
 

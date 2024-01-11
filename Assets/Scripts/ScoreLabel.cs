@@ -46,7 +46,6 @@ public class ScoreLabel : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1;
-        
     }
 
     private IEnumerator GameOverSequence()
@@ -60,9 +59,9 @@ public class ScoreLabel : MonoBehaviour
         SceneManager.LoadScene("LoseScreen"); 
 
     }
+
     private void EndGame()
     {
         //UnityEditor.EditorApplication.isPlaying = false;
-        
     }
 }

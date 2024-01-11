@@ -1,30 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 public enum GlowState
 {
-    Fade_out, Fade_in, Idle
+    FadeOut, FadeIn, Idle
 }
 
 public class GlowFade : MonoBehaviour
 {
-   
     public Color usualColor;
     public Color emissionColor;
     public float transitionSpeed;
     private static float minSpeed = 1.4f; // Currently the same bc looks weird with different
     private static float maxSpeed = 1.4f;
     private float time = 0.0f;
-    private GlowState state = GlowState.Fade_out;
+    private GlowState state = GlowState.FadeOut;
     private bool shouldSwitchSpeed = true;
     
-
-
     // Glow starts glowing on the way to fade out
     void Start()
     {
@@ -33,7 +24,6 @@ public class GlowFade : MonoBehaviour
         GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
         turnOffGlow();
         setRandomTransitionSpeed();
-
     }
 
     void Update()
@@ -46,32 +36,21 @@ public class GlowFade : MonoBehaviour
             shouldSwitchSpeed = false;
         }
 
-
         switch(state)
         {
-            case GlowState.Fade_out:
+            case GlowState.FadeOut:
                 turnOffGlow();
                 break;
-            case GlowState.Fade_in:
+            case GlowState.FadeIn:
                 turnOnGlow();
                 break;
             default: // If idle, do nothing
                 break;
-
         }
-
-       
-        
-
-
-
-        
     }
-
 
     void turnOnGlow()
     {
-
         // Turn on emission if not already on
         if (!GetComponent<Renderer>().material.IsKeywordEnabled("_EMISSION"))
         {
@@ -80,21 +59,18 @@ public class GlowFade : MonoBehaviour
 
         float lerpValue = Mathf.PingPong(time * transitionSpeed, 1f);
         Color lerpedColor = Color.Lerp(usualColor, emissionColor, lerpValue);
-        this.GetComponent<Renderer>().material.SetColor("_EmissionColor", lerpedColor);
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", lerpedColor);
         
         if (lerpValue > 0.99f)
         {
-            state = GlowState.Fade_out;
+            state = GlowState.FadeOut;
             time = 0;
             shouldSwitchSpeed = true;
         }
-
     }
 
     void turnOffGlow()
     {
-
-
         // Turn off emission if not already off
         if (GetComponent<Renderer>().material.IsKeywordEnabled("_EMISSION")) {
             GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
@@ -102,12 +78,11 @@ public class GlowFade : MonoBehaviour
         
         float lerpValue = Mathf.PingPong(time * transitionSpeed, 1f);
         Color lerpedColor = Color.Lerp(emissionColor, usualColor, lerpValue);
-        this.GetComponent<Renderer>().material.color = lerpedColor;
-
+        GetComponent<Renderer>().material.color = lerpedColor;
 
         if (lerpValue > 0.99f)
         {
-            state = GlowState.Fade_out;
+            state = GlowState.FadeOut;
             shouldSwitchSpeed = true;
         }
     }
@@ -118,9 +93,4 @@ public class GlowFade : MonoBehaviour
         System.Random rnd = new System.Random();
         transitionSpeed = (float) rnd.NextDouble() * (maxSpeed - minSpeed) + minSpeed;
     }
-
-
-
-
-
 }

@@ -82,7 +82,7 @@ public class FireflyBehaviour : MonoBehaviour
     {
         if (!collected)
         {
-            speed = Mathf.Pow(Time.timeSinceLevelLoad, 0.05f);
+            speed = Mathf.Pow(Mathf.Max(0, Time.timeSinceLevelLoad), 0.05f);
             GetComponent<Rigidbody>().AddForce(direction * 0.0000005f * speed);
             PutBackOntoSphere();
         }

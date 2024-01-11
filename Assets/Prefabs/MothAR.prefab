@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 2186907695052035627}
   - component: {fileID: 2439360576290101131}
   - component: {fileID: 5193780053439236507}
-  - component: {fileID: 8635422509234546849}
+  - component: {fileID: -5094701212205563662}
   m_Layer: 0
   m_Name: MothAR
   m_TagString: moth
@@ -835,7 +835,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7260464810239770671}
@@ -891,7 +891,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8635422509234546849
+--- !u!114 &-5094701212205563662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -900,12 +900,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6827527353921187128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fbee075073614c418d154622f57059b, type: 3}
+  m_Script: {fileID: 11500000, guid: f6647e42a3f865549a6f382801251416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  scoreLabel: {fileID: 0}
-  speed: 1
 --- !u!1 &6860219898215528251
 GameObject:
   m_ObjectHideFlags: 0

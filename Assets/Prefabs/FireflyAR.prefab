@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3315538121808788257}
   - component: {fileID: 6478319852958914822}
-  - component: {fileID: 8977617210022902817}
   - component: {fileID: 4550779500740641568}
+  - component: {fileID: 2903128979136491063}
   m_Layer: 0
   m_Name: FireflyAR
   m_TagString: fly
@@ -64,21 +64,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &8977617210022902817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 622931502324073887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17ef939551be6c145923b15e7aeb879c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  scoreLabel: {fileID: 0}
-  speed: 1
 --- !u!135 &4550779500740641568
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -100,6 +85,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2903128979136491063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622931502324073887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bf1a0e7d571914cb2d25ca40a2e737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &2507515794287097705
 GameObject:
   m_ObjectHideFlags: 0

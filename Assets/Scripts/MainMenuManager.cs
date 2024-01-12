@@ -10,7 +10,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene("OldGame");
+        SceneManager.LoadScene("ARGame");
     }
     public void OpenMenu()
     {

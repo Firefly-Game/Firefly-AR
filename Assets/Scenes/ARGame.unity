@@ -173,10 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47db84ea9044a740aaa5097ab6baeae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollSensitivity: 1
-  pitchSensitivity: 0.5
-  maxRollTiltAngle: 30
-  maxPitchTiltAngle: 15
+  rollSensitivity: 0.5
+  maxRollTiltAngle: 20
   smoothFactor: 0.5
 --- !u!54 &223974229
 Rigidbody:
@@ -340,8 +338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireflyPool: {fileID: 1490497376}
   mothPool: {fileID: 1950767750}
-  fireflyCount: 50
-  mothCount: 5
+  fireflyCount: 0
+  mothCount: 0
 --- !u!4 &406124071
 Transform:
   m_ObjectHideFlags: 0
@@ -762,7 +760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 0}
+  m_PlanePrefab: {fileID: 9188631439221585156, guid: 4885fb71b6108d94e824420677920672,
+    type: 3}
   m_DetectionMode: -1
 --- !u!114 &1888703793
 MonoBehaviour:
@@ -1081,18 +1080,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5434462552450501220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6672308126474732643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa850fbd5b8aded44846f96e35f1a9f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5472436117178709916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,7 +1105,6 @@ GameObject:
   m_Component:
   - component: {fileID: 212175866532230322}
   - component: {fileID: 5472436117178709916}
-  - component: {fileID: 5434462552450501220}
   m_Layer: 0
   m_Name: AR Session
   m_TagString: Untagged

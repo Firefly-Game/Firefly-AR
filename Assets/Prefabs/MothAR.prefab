@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6935422943444565548}
   - component: {fileID: 4211086349251272942}
   - component: {fileID: 3579803136911532539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightAntenna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1091661516691287140}
   - component: {fileID: 6153559230490256453}
   - component: {fileID: 6362416504841823611}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 1066988822251016151}
   - component: {fileID: 7745794295711698276}
   - component: {fileID: 50715430938141084}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 5088888041406041995}
   - component: {fileID: 1818566004345718261}
   - component: {fileID: 7883086720690967147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftAntenna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 3640736289462547332}
   - component: {fileID: 5919871688492600159}
   - component: {fileID: 1552540225437679613}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 4729004386688043855}
   - component: {fileID: 8524671794309646567}
   - component: {fileID: 3293768832732187811}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 8505456864279633296}
   - component: {fileID: 6575490183900778476}
   - component: {fileID: 7372974938135603171}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +816,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2186907695052035627}
   - component: {fileID: 2439360576290101131}
-  m_Layer: 0
+  - component: {fileID: 3906316092221628119}
+  - component: {fileID: -3687131340010311802}
+  m_Layer: 7
   m_Name: MothAR
   m_TagString: moth
   m_Icon: {fileID: 0}
@@ -832,8 +834,8 @@ Transform:
   m_GameObject: {fileID: 6827527353921187128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2, y: 1, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7260464810239770671}
@@ -849,8 +851,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6827527353921187128}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 0.0000001
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -868,6 +870,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &3906316092221628119
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6827527353921187128}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3687131340010311802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6827527353921187128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6647e42a3f865549a6f382801251416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &6860219898215528251
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,7 +918,7 @@ GameObject:
   - component: {fileID: 6243970065446068966}
   - component: {fileID: 2692461584601565854}
   - component: {fileID: 974686056588165462}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1094,7 @@ GameObject:
   - component: {fileID: 4491542735670763026}
   - component: {fileID: 7254454847348129795}
   - component: {fileID: 1121788001950130566}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1205,7 +1241,7 @@ GameObject:
   - component: {fileID: 1570790945589866292}
   - component: {fileID: 4642973773403387120}
   - component: {fileID: 5765854498028804646}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,7 +1346,7 @@ GameObject:
   - component: {fileID: 3453288982623074129}
   - component: {fileID: 7129360436919755699}
   - component: {fileID: 1554912566726339425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3315538121808788257}
   - component: {fileID: 6478319852958914822}
-  m_Layer: 0
+  - component: {fileID: 3327031226586200032}
+  - component: {fileID: 8858286086224806699}
+  - component: {fileID: 4537237466279147760}
+  m_Layer: 7
   m_Name: FireflyAR
   m_TagString: fly
   m_Icon: {fileID: 0}
@@ -27,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.125, z: 0.25}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.1, y: 0.041666664, z: 0.08333333}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3103459443153400091}
   - {fileID: 8960215481720677031}
@@ -43,8 +46,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622931502324073887}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 0.0000001
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -61,7 +64,56 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
+--- !u!135 &3327031226586200032
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622931502324073887}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8858286086224806699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622931502324073887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ef939551be6c145923b15e7aeb879c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  scoreLabel: {fileID: 0}
+  speed: 1
+--- !u!114 &4537237466279147760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622931502324073887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bf1a0e7d571914cb2d25ca40a2e737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &2507515794287097705
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +126,7 @@ GameObject:
   - component: {fileID: 541160049196968724}
   - component: {fileID: 4650076005613646159}
   - component: {fileID: 9118392720843424016}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +236,7 @@ GameObject:
   - component: {fileID: 4440048864498718183}
   - component: {fileID: 6614383357780147694}
   - component: {fileID: 1127307383354138398}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +398,7 @@ GameObject:
   - component: {fileID: 73938656581890950}
   - component: {fileID: 2402130419328529399}
   - component: {fileID: 1763423717892966285}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +507,7 @@ GameObject:
   - component: {fileID: 213479684372755995}
   - component: {fileID: 8723643592493848208}
   - component: {fileID: 1479309109534515049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +680,7 @@ GameObject:
   - component: {fileID: 8394304502673600916}
   - component: {fileID: 1699427861807596643}
   - component: {fileID: 6273463767277723998}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

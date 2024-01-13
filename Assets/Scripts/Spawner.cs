@@ -34,6 +34,16 @@ public class Spawner : MonoBehaviour
             SpawnMoth();
         }
 
+        StartCoroutine(TimedSpawn());
+
+    }
+    IEnumerator TimedSpawn()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2);
+            SpawnFirefly();
+        }
     }
 
     void Update()
@@ -50,6 +60,7 @@ public class Spawner : MonoBehaviour
             TrySpawnFireflyOnPlane();
         }
     }
+
 
     void TrySpawnFireflyOnPlane()
     {

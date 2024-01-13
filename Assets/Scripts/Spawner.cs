@@ -16,8 +16,8 @@ public class Spawner : MonoBehaviour
 
     public ARRaycastManager rays;
     public Camera myCamera;
+    public ARAnchorManager anchorManager;
     private float cooldown = 2f, cooldownCount = 0f;
-
     void Start()
     {
         Debug.Log("Checking if rays is null: " + (rays == null));
@@ -53,15 +53,28 @@ public class Spawner : MonoBehaviour
 
     void TrySpawnFireflyOnPlane()
     {
-    
-        List <ARRaycastHit> myHits = new List<ARRaycastHit>();
+        List<ARRaycastHit> myHits = new List<ARRaycastHit>();
         Vector3 screenCenter = myCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         bool hit = rays.Raycast(screenCenter, myHits, TrackableType.PlaneWithinPolygon);
 
         if (hit)
         {
             ARRaycastHit nearest = myHits[0];
-            fireflyPool.InstantiateObject(nearest.pose.position, nearest.pose.rotation);
+            GameObject firefly = fireflyPool.InstantiateObject(nearest.pose.position, nearest.pose.rotation);
+
+            firefly.layer = LayerMask.NameToLayer("NotCollected");
+
+            ARAnchor anchor = anchorManager.AttachAnchor(nearest.trackable as ARPlane, nearest.pose);
+            if (anchor != null)
+            {
+                firefly.transform.parent = anchor.transform;
+
+                FireflyBehaviour fireflyBehaviour = firefly.GetComponent<FireflyBehaviour>();
+                if (fireflyBehaviour != null)
+                {
+                    fireflyBehaviour.isAnchored = true;
+                }
+            }
         }
     }
 

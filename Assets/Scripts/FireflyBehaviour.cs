@@ -10,6 +10,7 @@ public class FireflyBehaviour : MonoBehaviour
     public float speed = 1.0f;
     private bool collected = false;
     private Vector3 desiredScale = Vector3.one * 0.1f;
+    public bool isAnchored = false;
 
     public FireflyType Type { get; protected set; } = FireflyType.Common;
 
@@ -82,8 +83,11 @@ public class FireflyBehaviour : MonoBehaviour
     {
         if (!collected)
         {
-            speed = Mathf.Pow(Mathf.Max(0, Time.timeSinceLevelLoad), 0.05f);
-            GetComponent<Rigidbody>().AddForce(direction * 0.0000005f * speed);
+            if (!isAnchored)
+            {
+                speed = Mathf.Pow(Mathf.Max(0, Time.timeSinceLevelLoad), 0.05f);
+                GetComponent<Rigidbody>().AddForce(direction * 0.0000005f * speed);
+            }
             PutBackOntoSphere();
         }
         else

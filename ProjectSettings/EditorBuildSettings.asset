@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 6c81c58546d682a4fb5428a8abdcf01a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial.unity
     guid: 6f0c9fe74cfac8f4b85df3141325314a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/OldGame.unity
     guid: 079215a4ba38673499d7756d8ae0e663
   - enabled: 1
     path: Assets/Scenes/ARGame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LoseScreen.unity
     guid: 79a2526331f8bf04bb18706a771a1831
   m_configObjects:

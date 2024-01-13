@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
@@ -11,8 +14,16 @@ public class Spawner : MonoBehaviour
     public int fireflyCount = 100;
     public int mothCount = 5;
 
+    public ARRaycastManager rays;
+    public Camera myCamera;
+    private float cooldown = 2f, cooldownCount = 0f;
+
     void Start()
     {
+        Debug.Log("Checking if rays is null: " + (rays == null));
+        Debug.Log("Checking if myCamera is null: " + (myCamera == null));
+        Debug.Log("Checking if fireflyPool is null: " + (fireflyPool == null));
+
         for (int i = 0; i < fireflyCount; i++)
         {
             SpawnFirefly();
@@ -23,15 +34,34 @@ public class Spawner : MonoBehaviour
             SpawnMoth();
         }
 
-        StartCoroutine(TimedSpawn());
     }
 
-    IEnumerator TimedSpawn()
+    void Update()
     {
-        while (true)
+        Debug.Log("Checking if rays is null: " + (rays == null));
+        Debug.Log("Checking if myCamera is null: " + (myCamera == null));
+        Debug.Log("Checking if fireflyPool is null: " + (fireflyPool == null));
+
+        cooldownCount += Time.deltaTime;
+
+        if (cooldownCount > cooldown)
         {
-            yield return new WaitForSeconds(2);
-            SpawnFirefly();
+            cooldownCount = 0;
+            TrySpawnFireflyOnPlane();
+        }
+    }
+
+    void TrySpawnFireflyOnPlane()
+    {
+    
+        List <ARRaycastHit> myHits = new List<ARRaycastHit>();
+        Vector3 screenCenter = myCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        bool hit = rays.Raycast(screenCenter, myHits, TrackableType.PlaneWithinPolygon);
+
+        if (hit)
+        {
+            ARRaycastHit nearest = myHits[0];
+            fireflyPool.InstantiateObject(nearest.pose.position, nearest.pose.rotation);
         }
     }
 

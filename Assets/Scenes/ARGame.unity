@@ -155,8 +155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireflyPool: {fileID: 737474930}
   mothPool: {fileID: 1075823469}
-  fireflyCount: 50
+  fireflyCount: 10
   mothCount: 5
+  rays: {fileID: 1888703791}
+  myCamera: {fileID: 2123980308}
 --- !u!4 &33425788
 Transform:
   m_ObjectHideFlags: 0

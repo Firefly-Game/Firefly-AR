@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -284,6 +284,15 @@ MonoBehaviour:
       - m_Target: {fileID: 1652383436}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: GameStart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1193077464}
         m_TargetAssemblyTypeName: SplashScreenControl, Assembly-CSharp
         m_MethodName: BackToMenu
@@ -798,7 +807,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Welcome to the Firefly game!
 
-    Steer your jar with mouse movements
+    Steer your jar by moving your phone
     and catch as many fireflies as you can to get the highest score.
 
     Be careful
